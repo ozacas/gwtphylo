@@ -8,4 +8,11 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
  */
 public interface PhyloXMLServiceAsync {
 	void getSuperfamilies(AsyncCallback<String[]> cb);
+	
+	void getCategories(String superfamily, AsyncCallback<String[]> cb);
+
+	void getTrees(String superfamily, String category,
+			AsyncCallback<String[]> cb);
+	
+	void getPhyloXML(String superfamily, String category, String name, AsyncCallback<String> cb);
 }
