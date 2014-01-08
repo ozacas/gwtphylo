@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+
+  <!-- Servlets -->
+   <servlet>
+    <servlet-name>PhyloXMLServiceImpl</servlet-name>
+    <servlet-class>au.edu.unimelb.plantcell.gwtphylo.server.PhyloXMLServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>PhyloXMLServiceImpl</servlet-name>
+    <url-pattern>au_edu_unimelb_plantcell_gwtphylo/PhyloXMLServiceImpl</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>Au_edu_unimelb_plantcell_gwtphylo.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>
