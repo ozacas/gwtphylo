@@ -10,16 +10,11 @@ import com.google.gwt.user.client.ui.TreeItem;
 
 
 public class OpenTreeItem implements OpenHandler<TreeItem> {
-	private String superfamily;
-	
-	public OpenTreeItem(final String sf) {
-		this.superfamily = sf;
-	}
 	
 	@Override
 	public void onOpen(final OpenEvent<TreeItem> event) {
 		TreeItem item = event.getTarget();
-		
+		System.err.println("Open "+item.getText());
 		if (TreeItemUtils.isSuperFamilyTreeItem(item)) { 
 			loadCategories(event);
 		} else if (TreeItemUtils.isCategoryItem(item)) {
@@ -30,7 +25,9 @@ public class OpenTreeItem implements OpenHandler<TreeItem> {
 
 	private void loadTrees(final OpenEvent<TreeItem> event) {
 		PhyloXMLServiceAsync service = (PhyloXMLServiceAsync) GWT.create(PhyloXMLService.class);
-		String category = event.getTarget().getText();
+		TreeItem ti = event.getTarget();
+		String category = ti.getText();
+		final String superfamily = ti.getParentItem().getText();
 		AsyncCallback<String[]> cb = new AsyncCallback<String[]>() {
 
 			@Override
@@ -44,6 +41,7 @@ public class OpenTreeItem implements OpenHandler<TreeItem> {
 			@Override
 			public void onSuccess(String[] result) {
 				TreeItem ti = event.getTarget();
+				System.err.println("Updating "+ti.getText()+" in "+superfamily);
 				ti.removeItems();
 				if (result.length < 1) {
 					ti.addItem(dummyItem());
@@ -89,6 +87,7 @@ public class OpenTreeItem implements OpenHandler<TreeItem> {
 				}
 			}
 		};
+		String superfamily = event.getTarget().getText();
 		service.getCategories(superfamily, cb);
 	}
 }
