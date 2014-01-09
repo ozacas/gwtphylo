@@ -28,15 +28,19 @@ public class SuperfamiliesCallback implements AsyncCallback<String[]> {
 		Window.alert(SERVER_ERROR+" Message: "+caught.getMessage());
 	}
 	
+	private TreeItem dummyItem() {
+		TreeItem dummy = new TreeItem();
+		dummy.setVisible(false);
+		return dummy;
+	}
+	
 	@Override
 	public void onSuccess(String[] superfamilies) {
 		for (String superfamily : superfamilies) {
-			SafeHtml html = SafeHtmlUtils.fromString(superfamily);
-			TreeItem ti = new TreeItem(html);
-			TreeItem dummy = new TreeItem();
-			ti.addItem(dummy);
+			TreeItem ti = new TreeItem(SafeHtmlUtils.fromString(superfamily));
+			ti.addItem(dummyItem());
 			t.addItem(ti);
-			t.addOpenHandler(new OpenTreeItem(superfamily));
+			t.addOpenHandler(new OpenTreeItem());
 			t.addSelectionHandler(new DisplayTreeItem());
 		}
 	} 
