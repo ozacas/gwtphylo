@@ -1,11 +1,10 @@
 package au.edu.unimelb.plantcell.gwtphylo.client;
 
-import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public class SuperfamiliesCallback implements AsyncCallback<String[]> {
 	/**
@@ -40,8 +39,6 @@ public class SuperfamiliesCallback implements AsyncCallback<String[]> {
 			TreeItem ti = new TreeItem(SafeHtmlUtils.fromString(superfamily));
 			ti.addItem(dummyItem());
 			t.addItem(ti);
-			t.addOpenHandler(new OpenTreeItem());
-			t.addSelectionHandler(new DisplayTreeItem());
 		}
 	} 
 

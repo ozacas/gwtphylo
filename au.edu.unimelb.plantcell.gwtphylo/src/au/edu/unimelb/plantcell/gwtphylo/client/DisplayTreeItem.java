@@ -50,11 +50,7 @@ public class DisplayTreeItem implements SelectionHandler<TreeItem> {
 	 * This code will plot a rectangular tree view from the specified PhyloXML. Note the method signature for GWT 2.5.1 (or compat) to use!
 	 * @param xml
 	 */
-	public static native void showPhyloSVG(String xml) /*-{
-		phylocanvas = new Smits.PhyloCanvas(
-	    	$xml,           // Newick or XML string
-	    	'svgCanvas',    // Div Id where to render
-	    	1000, 1000      // Height, Width in pixels
-		);     
+	public native void showPhyloSVG(String xml) /*-{
+		phylocanvas = new $wnd.Smits.PhyloCanvas(xml,  'svgCanvas',   1000, 1000);
 	}-*/;
 }

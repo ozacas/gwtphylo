@@ -26,6 +26,7 @@ public class OpenTreeItem implements OpenHandler<TreeItem> {
 	private void loadTrees(final OpenEvent<TreeItem> event) {
 		PhyloXMLServiceAsync service = (PhyloXMLServiceAsync) GWT.create(PhyloXMLService.class);
 		TreeItem ti = event.getTarget();
+		
 		String category = ti.getText();
 		final String superfamily = ti.getParentItem().getText();
 		AsyncCallback<String[]> cb = new AsyncCallback<String[]>() {
