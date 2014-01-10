@@ -16,6 +16,8 @@ public class Au_edu_unimelb_plantcell_gwtphylo implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		final Tree t = new Tree();
+		t.addOpenHandler(new OpenTreeItem());
+		t.addSelectionHandler(new DisplayTreeItem());
 		
 		TreeItem dummy = new TreeItem();
 		dummy.setVisible(false);
