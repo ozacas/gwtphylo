@@ -33,7 +33,6 @@ public class DisplayTreeItem implements SelectionHandler<TreeItem> {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				
 			}
 
 			@Override
@@ -51,6 +50,6 @@ public class DisplayTreeItem implements SelectionHandler<TreeItem> {
 	 * @param xml
 	 */
 	public native void showPhyloSVG(String xml) /*-{
-		phylocanvas = new $wnd.Smits.PhyloCanvas(xml,  'svgCanvas',   1000, 1000);
+		phylocanvas = new $wnd.Smits.PhyloCanvas({ phyloxml: xml },  'svgCanvas', 1000, 1000 , 'circular');
 	}-*/;
 }
