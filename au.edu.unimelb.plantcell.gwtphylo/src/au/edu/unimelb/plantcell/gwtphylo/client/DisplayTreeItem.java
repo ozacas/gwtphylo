@@ -3,6 +3,8 @@ package au.edu.unimelb.plantcell.gwtphylo.client;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.TreeItem;
 
@@ -37,6 +39,7 @@ public class DisplayTreeItem implements SelectionHandler<TreeItem> {
 
 			@Override
 			public void onSuccess(String xml) {
+				emptySVGCanvas();	
 				showPhyloSVG(xml);
 			}
 			
@@ -46,10 +49,21 @@ public class DisplayTreeItem implements SelectionHandler<TreeItem> {
 	}
 
 	/**
+	 * Ugly hack using DOM manipulation. Seems ok with firefox, but not sure about other browsers? Memory leaks?
+	 */
+	protected void emptySVGCanvas() {
+		Element parent = DOM.getElementById("scrollableCanvas");
+		Element kid;
+		while ((kid = DOM.getFirstChild(parent)) != null) {
+			DOM.removeChild(parent, kid);
+		}
+	}
+
+	/**
 	 * This code will plot a rectangular tree view from the specified PhyloXML. Note the method signature for GWT 2.5.1 (or compat) to use!
 	 * @param xml
 	 */
 	public native void showPhyloSVG(String xml) /*-{
-		phylocanvas = new $wnd.Smits.PhyloCanvas({ phyloxml: xml },  'svgCanvas', 1000, 1000 , 'circular');
+		phylocanvas = new $wnd.Smits.PhyloCanvas({ phyloxml: xml },  'scrollableCanvas', 1000, 1000 , 'circular');
 	}-*/;
 }
