@@ -32,7 +32,7 @@ public class OpenTreeItem implements OpenHandler<TreeItem> {
 		AsyncCallback<String[]> cb = new AsyncCallback<String[]>() {
 
 			@Override
-			public void onFailure(Throwable caught) {
+			public void onFailure(Throwable caught) {				
 				// display nothing underneath the item
 				TreeItem kid = event.getTarget();
 				kid.removeItems();
@@ -42,7 +42,6 @@ public class OpenTreeItem implements OpenHandler<TreeItem> {
 			@Override
 			public void onSuccess(String[] result) {
 				TreeItem ti = event.getTarget();
-				System.err.println("Updating "+ti.getText()+" in "+superfamily);
 				ti.removeItems();
 				if (result.length < 1) {
 					ti.addItem(dummyItem());

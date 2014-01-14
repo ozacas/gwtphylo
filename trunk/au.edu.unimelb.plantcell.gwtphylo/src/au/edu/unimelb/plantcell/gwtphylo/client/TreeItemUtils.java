@@ -22,7 +22,12 @@ public class TreeItemUtils {
 		return (isSuperFamilyTreeItem(it.getParentItem()));
 	}
 
+	/**
+	 * If its not a category (eg. by_clade) or a superfamily (eg. agpeptide) then it must be a PhyloXML file for display (the tree has no other visible items)
+	 * @param selectedItem
+	 * @return
+	 */
 	public static boolean isPhyloXMLItem(TreeItem selectedItem) {
-		return (!(isCategoryItem(selectedItem) && isSuperFamilyTreeItem(selectedItem)));
+		return (!(isCategoryItem(selectedItem) || isSuperFamilyTreeItem(selectedItem)));
 	}
 }
