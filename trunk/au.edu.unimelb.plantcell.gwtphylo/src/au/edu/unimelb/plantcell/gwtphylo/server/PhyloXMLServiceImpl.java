@@ -75,7 +75,7 @@ public class PhyloXMLServiceImpl extends RemoteServiceServlet implements PhyloXM
 	}
 	
 	/**
-	 * Returns the phyloxml: maybe large for large trees (10MB)
+	 * Returns the phyloxml: maybe large for large trees (eg. 10MB-20MB)
 	 */
 	public String getPhyloXML(String superfamily, String category, String name) {
 		BufferedReader rdr = null;
@@ -96,20 +96,5 @@ public class PhyloXMLServiceImpl extends RemoteServiceServlet implements PhyloXM
 			ex.printStackTrace();
 			return null;
 		}
-	}
-	
-	/**
-	 * Escape an html string. Escaping data received from the client helps to
-	 * prevent cross-site script vulnerabilities.
-	 * 
-	 * @param html the html string to escape
-	 * @return the escaped string
-	 */
-	private String escapeHtml(String html) {
-		if (html == null) {
-			return null;
-		}
-		return html.replaceAll("&", "&amp;").replaceAll("<", "&lt;")
-				.replaceAll(">", "&gt;");
 	}
 }
