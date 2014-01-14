@@ -27,6 +27,10 @@ public class SuperfamiliesCallback implements AsyncCallback<String[]> {
 		Window.alert(SERVER_ERROR+" Message: "+caught.getMessage());
 	}
 	
+	/**
+	 * Ensure every tree node has at least one item so that the '+' expand/collapse icon appears and is functional for the user
+	 * @return
+	 */
 	private TreeItem dummyItem() {
 		TreeItem dummy = new TreeItem();
 		dummy.setVisible(false);

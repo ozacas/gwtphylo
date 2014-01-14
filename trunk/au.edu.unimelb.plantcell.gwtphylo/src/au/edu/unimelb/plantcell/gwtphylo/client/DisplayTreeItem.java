@@ -22,16 +22,17 @@ public class DisplayTreeItem implements SelectionHandler<TreeItem> {
 			return;
 			
 		// schedule the tree for display in the browser... again ASYNC
-		TreeItem category_item = event.getSelectedItem().getParentItem();
+		TreeItem selected_item    = event.getSelectedItem();
+		TreeItem category_item    = selected_item.getParentItem();
 		TreeItem superfamily_item = category_item.getParentItem();
-		if (category_item == null || superfamily_item == null)
+		if (category_item == null || superfamily_item == null || selected_item == null)
 			return;
-		String category = category_item.getText();
-		String name     = event.getSelectedItem().getText();
+		String category    = category_item.getText();
+		String name        = getTreeItemName(selected_item);
 		String superfamily = superfamily_item.getText();
 		
 		PhyloXMLServiceAsync  service = (PhyloXMLServiceAsync) GWT.create(PhyloXMLService.class);
-		AsyncCallback<String> cb = new AsyncCallback<String>() {
+		AsyncCallback<String> cb      = new AsyncCallback<String>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -39,7 +40,9 @@ public class DisplayTreeItem implements SelectionHandler<TreeItem> {
 
 			@Override
 			public void onSuccess(String xml) {
+				// remove all existing tree(s) from canvas
 				emptySVGCanvas();	
+				// add new tree to canvas
 				showPhyloSVG(xml);
 			}
 			
@@ -48,6 +51,11 @@ public class DisplayTreeItem implements SelectionHandler<TreeItem> {
 		service.getPhyloXML(superfamily, category, name, cb);
 	}
 
+	private String getTreeItemName(TreeItem item) {
+		assert(item != null);
+		return item.getUserObject().toString();
+	}
+	
 	/**
 	 * Ugly hack using DOM manipulation. Seems ok with firefox, but not sure about other browsers? Memory leaks?
 	 */
@@ -55,6 +63,7 @@ public class DisplayTreeItem implements SelectionHandler<TreeItem> {
 		Element parent = DOM.getElementById("scrollableCanvas");
 		Element kid;
 		while ((kid = DOM.getFirstChild(parent)) != null) {
+			//System.err.println(kid.getTitle());
 			DOM.removeChild(parent, kid);
 		}
 	}

@@ -48,15 +48,15 @@ public class OpenTreeItem implements OpenHandler<TreeItem> {
 					ti.addItem(dummyItem());
 				}
 				for (String tree : result) {
-					SafeHtml item = SafeHtmlUtils.fromString(tree);
-					ti.addItem(item);
+					TreeItem kid = new PhyloXMLTreeItem(tree);
+					ti.addItem(kid);
 				}
 			}
 			
 		};
 		service.getTrees(superfamily, category, cb);
 	}
-	
+
 	private TreeItem dummyItem() {
 		TreeItem it = new TreeItem();
 		it.setVisible(false);
