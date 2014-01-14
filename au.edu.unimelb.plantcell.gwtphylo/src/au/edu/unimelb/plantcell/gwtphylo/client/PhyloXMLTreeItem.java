@@ -1,7 +1,6 @@
 package au.edu.unimelb.plantcell.gwtphylo.client;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.google.gwt.regexp.shared.RegExp;
 
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
@@ -15,11 +14,12 @@ import com.google.gwt.user.client.ui.TreeItem;
  *
  */
 public class PhyloXMLTreeItem extends TreeItem {
-	private static final Pattern alignment_prog_match = Pattern.compile("_?(?:mafft)|(?:muscle)_?");
+	private static final RegExp alignment_prog_match = RegExp.compile("_?(?:mafft)|(?:muscle)_?");
 	
 	public PhyloXMLTreeItem(final String name) {
 		super(cleanSafeName(name));
 		setUserObject(name);		// this must be set 
+		setStyleName("phyloxmlti");
 	}
 	
 	private static SafeHtml cleanSafeName(final String name) {
@@ -41,9 +41,8 @@ public class PhyloXMLTreeItem extends TreeItem {
 	
 	private static String remove_aligner(final String name) {
 		assert(name != null);
-		Matcher m = alignment_prog_match.matcher(name);
-		if (m.find()) {
-			return name.replaceAll(alignment_prog_match.pattern(), "");
+		if (alignment_prog_match.test(name)) {
+			return name.replaceAll(alignment_prog_match.getSource(), "");
 		}
 		return name;
 	}
