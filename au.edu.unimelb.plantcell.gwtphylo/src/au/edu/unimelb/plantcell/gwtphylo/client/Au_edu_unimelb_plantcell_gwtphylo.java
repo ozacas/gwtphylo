@@ -2,7 +2,6 @@ package au.edu.unimelb.plantcell.gwtphylo.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.shared.GWT;
-import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
@@ -28,7 +27,7 @@ public class Au_edu_unimelb_plantcell_gwtphylo implements EntryPoint {
 		t.addItem(dummy);
 		
 		// setup for the RPC call
-		PhyloXMLServiceAsync  service = (PhyloXMLServiceAsync) GWT.create(PhyloXMLService.class);
+		OneKPServiceAsync  service = (OneKPServiceAsync) GWT.create(OneKPService.class);
 		SuperfamiliesCallback sf_cb = new SuperfamiliesCallback(t);
 		
 		// add tree onto webpage

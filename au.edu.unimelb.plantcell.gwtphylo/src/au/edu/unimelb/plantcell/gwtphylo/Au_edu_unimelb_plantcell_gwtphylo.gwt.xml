@@ -26,5 +26,5 @@
   <source path='client'/>
   <source path='shared'/>
 
-  <servlet path="/PhyloXMLServiceImpl" class="au.edu.unimelb.plantcell.gwtphylo.server.PhyloXMLServiceImpl"/>
+  <servlet path="/PhyloXMLServiceImpl" class="au.edu.unimelb.plantcell.gwtphylo.server.OneKPServiceImpl"/>
 </module>
