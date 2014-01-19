@@ -24,7 +24,7 @@ public class OpenTreeItem implements OpenHandler<TreeItem> {
 	}
 
 	private void loadTrees(final OpenEvent<TreeItem> event) {
-		PhyloXMLServiceAsync service = (PhyloXMLServiceAsync) GWT.create(PhyloXMLService.class);
+		OneKPServiceAsync service = (OneKPServiceAsync) GWT.create(OneKPService.class);
 		TreeItem ti = event.getTarget();
 		
 		String category = ti.getText();
@@ -63,7 +63,7 @@ public class OpenTreeItem implements OpenHandler<TreeItem> {
 	}
 	
 	private void loadCategories(final OpenEvent<TreeItem> event) {
-		PhyloXMLServiceAsync  service = (PhyloXMLServiceAsync) GWT.create(PhyloXMLService.class);
+		OneKPServiceAsync  service = (OneKPServiceAsync) GWT.create(OneKPService.class);
 		AsyncCallback<String[]> cb = new AsyncCallback<String[]>() {
 			@Override
 			public void onFailure(Throwable caught) {

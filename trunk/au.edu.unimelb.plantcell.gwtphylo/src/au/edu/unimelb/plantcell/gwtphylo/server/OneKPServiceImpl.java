@@ -6,7 +6,7 @@ import java.io.FileFilter;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-import au.edu.unimelb.plantcell.gwtphylo.client.PhyloXMLService;
+import au.edu.unimelb.plantcell.gwtphylo.client.OneKPService;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -14,7 +14,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
  * The server side implementation of the RPC service.
  */
 @SuppressWarnings("serial")
-public class PhyloXMLServiceImpl extends RemoteServiceServlet implements PhyloXMLService {
+public class OneKPServiceImpl extends RemoteServiceServlet implements OneKPService {
 	public class SubfolderFilter implements FileFilter {
 
 		@Override
@@ -72,29 +72,5 @@ public class PhyloXMLServiceImpl extends RemoteServiceServlet implements PhyloXM
 		});
 		
 		return asFilenameArray(phyloxml);
-	}
-	
-	/**
-	 * Returns the phyloxml: maybe large for large trees (eg. 10MB-20MB)
-	 */
-	public String getPhyloXML(String superfamily, String category, String name) {
-		BufferedReader rdr = null;
-		try {
-			File phyloxml = new File(onekp_phyloxml_folder, superfamily + File.separatorChar + category + File.separatorChar + name);
-			if (!(phyloxml != null && phyloxml.canRead() && phyloxml.isFile())) 
-				throw new IllegalArgumentException("file cannot be read!");
-			
-			StringBuilder sb = new StringBuilder((int) phyloxml.length());
-			rdr = new BufferedReader(new FileReader(phyloxml));
-			String line;
-			while ((line = rdr.readLine()) != null) {
-				sb.append(line);
-			}
-			rdr.close();
-			return sb.toString();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}
 	}
 }

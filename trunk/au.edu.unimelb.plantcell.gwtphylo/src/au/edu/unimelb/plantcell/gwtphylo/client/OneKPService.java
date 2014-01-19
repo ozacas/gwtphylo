@@ -4,10 +4,13 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 /**
- * The client side stub for the RPC service.
+ * Service which is responsible for reporting which gene superfamilies, categories and trees are available. 
+ * A separate service {@link GetPhyloXMLServlet} is responsible for transferring large XML documents for viewing more efficiently 
+ * than GWT-RPC can.
+ * 
  */
-@RemoteServiceRelativePath("PhyloXMLServiceImpl")
-public interface PhyloXMLService extends RemoteService {
+@RemoteServiceRelativePath("OneKPServiceImpl")
+public interface OneKPService extends RemoteService {
 	String[] getSuperfamilies() throws IllegalArgumentException;
 	
 	/**
@@ -22,11 +25,5 @@ public interface PhyloXMLService extends RemoteService {
 	 * Returns the list of available trees for the given category (ie. analysis) of a particular superfamily
 	 */
 	String[] getTrees(String superfamily, String category) throws IllegalArgumentException;
-	
-	/**
-	 * Returns the phyloxml associated with the given selection
-	 */
-	String getPhyloXML(String superfamily, String category, String name) throws IllegalArgumentException;
-	
-	
+
 }
