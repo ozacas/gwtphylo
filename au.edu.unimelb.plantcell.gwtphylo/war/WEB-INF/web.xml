@@ -7,13 +7,23 @@
 
   <!-- Servlets -->
    <servlet>
-    <servlet-name>PhyloXMLServiceImpl</servlet-name>
-    <servlet-class>au.edu.unimelb.plantcell.gwtphylo.server.PhyloXMLServiceImpl</servlet-class>
+    <servlet-name>OneKPServiceImpl</servlet-name>
+    <servlet-class>au.edu.unimelb.plantcell.gwtphylo.server.OneKPServiceImpl</servlet-class>
   </servlet>
 
+  <servlet>
+  	<servlet-name>GetPhyloXMLServletImpl</servlet-name>
+  	<servlet-class>au.edu.unimelb.plantcell.gwtphylo.server.GetPhyloXMLServlet</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
-    <servlet-name>PhyloXMLServiceImpl</servlet-name>
-    <url-pattern>au_edu_unimelb_plantcell_gwtphylo/PhyloXMLServiceImpl</url-pattern>
+  	<servlet-name>GetPhyloXMLServletImpl</servlet-name>
+  	<url-pattern>/au_edu_unimelb_plantcell_gwtphylo/phyloxml</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>OneKPServiceImpl</servlet-name>
+  	<url-pattern>/au_edu_unimelb_plantcell_gwtphylo/OneKPServiceImpl</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->

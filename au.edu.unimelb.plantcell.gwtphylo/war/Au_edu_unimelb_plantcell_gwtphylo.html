@@ -1,0 +1,77 @@
+<!doctype html>
+<!-- The DOCTYPE declaration above will set the     -->
+<!-- browser's rendering engine into                -->
+<!-- "Standards Mode". Replacing this declaration   -->
+<!-- with a "Quirks Mode" doctype is not supported. -->
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <!--                                                               -->
+    <!-- Consider inlining CSS to reduce the number of requested files -->
+    <!--                                                               -->
+    <link type="text/css" rel="stylesheet" href="Au_edu_unimelb_plantcell_gwtphylo.css">
+
+    <!--                                           -->
+    <!-- Any title is fine                         -->
+    <!--                                           -->
+    <title>1kp AGP &amp; GT2 genes</title>
+    
+    <!--                                           -->
+    <!-- This script loads your compiled module.   -->
+    <!-- If you add any GWT meta tags, they must   -->
+    <!-- be added before this line.                -->
+    <!--                                           -->
+    <script type="text/javascript" language="javascript" src="au_edu_unimelb_plantcell_gwtphylo/au_edu_unimelb_plantcell_gwtphylo.nocache.js"></script>
+ 
+ 	<!-- jsphylosvg support -- see jsphylosvg.com for details -->
+ 	<script type="text/javascript" language="javascript" src="au_edu_unimelb_plantcell_gwtphylo/raphael-min.js"></script>
+ 	<script type="text/javascript" language="javascript" src="au_edu_unimelb_plantcell_gwtphylo/jsphylosvg-min.js"></script>
+  </head>
+
+  <!--                                           -->
+  <!-- The body can have arbitrary html, or      -->
+  <!-- you can leave the body empty if you want  -->
+  <!-- to create a completely dynamic UI.        -->
+  <!--                                           -->
+  <body>
+
+    <!-- OPTIONAL: include this if you want history support -->
+    <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
+    
+    <!-- RECOMMENDED if your web app will not function without JavaScript enabled -->
+    <noscript>
+      <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+        Your web browser must have JavaScript enabled
+        in order for this application to display correctly.
+      </div>
+    </noscript>
+
+    <h1>1kp AGP &amp; GT2 genes</h1>
+
+	<!--  code sets this to notify the user that a load/display of a tree is in progress -->
+	<div id="loadingMessage"></div>
+	
+	<!-- main portion of display -->
+    <table align="center">
+      <tr>
+        <td colspan="2" style="font-weight:bold;">Please select the target gene family:</td>        
+      </tr>
+      <tr>
+        <td id="1kpContainer"></td>
+        <td id="treeContainer"><div id="svgCanvas"></div></td>
+      </tr>
+      <tr>
+        <td colspan="2" style="color:red;" id="errorLabelContainer"></td>
+      </tr>
+      <tr>
+      	<td colspace="2" style="font-weight:italic;"><b>Acknowledgements</b>: this website is the results of a major scientific
+      	effort at <a href="http://onekp.com">OneKP</a> to identify genes across a broad variety of plant and algal species. This research was 
+      	supported by a Victorian Life Sciences Computation Initiative (VLSCI) grant number VR0191 on its Peak Computing Facility at the University 
+      	of Melbourne, an initiative of the Victorian Government, Australia.
+      	</td>
+      </tr>
+    </table>
+  </body>
+</html>
