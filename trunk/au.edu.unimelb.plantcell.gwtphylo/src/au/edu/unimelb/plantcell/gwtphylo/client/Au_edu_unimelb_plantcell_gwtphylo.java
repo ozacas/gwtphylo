@@ -11,10 +11,8 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
 
@@ -49,10 +47,9 @@ public class Au_edu_unimelb_plantcell_gwtphylo implements EntryPoint {
 		RootPanel.get("1kpContainer").add(t);
 		
 		// add scrollable canvas to display the SVG rendering to the webpage
-		Panel div = new SimplePanel();
-		div.asWidget().getElement().setId("scrollableCanvas");
-		ScrollPanel sp = new ScrollPanel(div);
-		sp.asWidget().getElement().setId("scrollPanel");
+		ScrollPanel sp = new ScrollPanel();
+		sp.setSize("600px", "600px");
+		sp.getElement().setId("scrollableCanvas");
 		RootPanel.get("svgCanvas").add(sp);
 		
 		HorizontalPanel    controlPanel = new HorizontalPanel();
