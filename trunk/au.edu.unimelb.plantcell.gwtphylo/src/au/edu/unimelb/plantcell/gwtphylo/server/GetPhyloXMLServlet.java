@@ -31,7 +31,7 @@ public class GetPhyloXMLServlet extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) {
-		// NO-OP: only HTTP POST method supported by this servlet
+		doPost(req, resp);
 	}
 	
 	@Override
