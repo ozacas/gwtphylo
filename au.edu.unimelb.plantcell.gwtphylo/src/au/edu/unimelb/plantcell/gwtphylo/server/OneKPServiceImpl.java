@@ -1,9 +1,7 @@
 package au.edu.unimelb.plantcell.gwtphylo.server;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileReader;
 import java.util.ArrayList;
 
 import au.edu.unimelb.plantcell.gwtphylo.client.OneKPService;
