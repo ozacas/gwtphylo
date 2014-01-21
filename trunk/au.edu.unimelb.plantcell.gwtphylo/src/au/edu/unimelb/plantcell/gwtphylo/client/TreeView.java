@@ -44,12 +44,12 @@ public class TreeView implements TreeViewModelListener {
 					if (200 == response.getStatusCode()) {
 						hideLoadingBanner();
 						setCurrentTreePath(mdl);
-						setLabelFontSize(mdl.getCurrentTextSize());
+						setDisplayDefaults(mdl);
 						
 						// remove all existing tree(s) from canvas
 						emptySVGCanvas();	
 						// add new tree to canvas
-						showPhyloSVG(response.getText());
+						showPhyloSVG(response.getText(), mdl.isCircularTree(), mdl.getCanvasWidth(), mdl.getCanvasHeight());
 					}
 				}
 
@@ -89,18 +89,41 @@ public class TreeView implements TreeViewModelListener {
 	}
 
 	/**
+	 * Establish the global drawing parameters used by JSPhyloSVG
+	 * @param mdl
+	 */
+	private final void setDisplayDefaults(TreeViewModel mdl) {
+		assert(mdl != null);
+		setLabelSize(mdl.getCurrentTextSize());
+		setLineColour();
+	}
+	
+	/**
 	 * Set the label font size for display
 	 */
-	public native void setLabelFontSize(int size) /*-{
+	public native void setLabelSize(int size) /*-{
 		$wnd.Smits.PhyloCanvas.Render.Style.text["font-size"] = size;
+	}-*/;
+	
+	/**
+	 * Set the colour of the lines in the tree to non-black (aid visual cues)
+	 */
+	public native void setLineColour() /*-{
+		$wnd.Smits.PhyloCanvas.Render.Style.line.stroke = 'rgb(0,128,255)';
 	}-*/;
 	
 	/**
 	 * This code will plot a rectangular tree view from the specified PhyloXML. Note the method signature for GWT 2.5.1 (or compat) to use!
 	 * @param xml
+	 * @param as_circle display as circular phylogram rather than rectangular phylogram
 	 */
-	public native void showPhyloSVG(String xml) /*-{
-		phylocanvas = new $wnd.Smits.PhyloCanvas({ phyloxml: xml },  'scrollableCanvas', 1000, 1000 , 'circular');
+	public native void showPhyloSVG(String xml, boolean as_circle, int canvas_width, int canvas_height) /*-{
+		if (as_circle) {
+			phylocanvas = new $wnd.Smits.PhyloCanvas({ phyloxml: xml },  'scrollableCanvas', canvas_width, canvas_height , 'circular');
+		} else {
+			phylocanvas = new $wnd.Smits.PhyloCanvas({ phyloxml: xml }, 'scrollableCanvas', canvas_width, canvas_height);
+		}
 	}-*/;
+	
 	
 }
