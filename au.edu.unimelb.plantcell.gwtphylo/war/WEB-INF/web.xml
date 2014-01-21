@@ -15,7 +15,7 @@
   	<servlet-name>GetPhyloXMLServletImpl</servlet-name>
   	<servlet-class>au.edu.unimelb.plantcell.gwtphylo.server.GetPhyloXMLServlet</servlet-class>
   </servlet>
-  
+ 
   <servlet-mapping>
   	<servlet-name>GetPhyloXMLServletImpl</servlet-name>
   	<url-pattern>/au_edu_unimelb_plantcell_gwtphylo/phyloxml</url-pattern>
