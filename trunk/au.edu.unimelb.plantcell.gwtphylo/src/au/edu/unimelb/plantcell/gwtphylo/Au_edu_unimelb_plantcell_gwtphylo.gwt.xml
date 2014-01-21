@@ -27,7 +27,6 @@
   <source path='shared'/>
 
   <servlet path="/OneKPServiceImpl" class="au.edu.unimelb.plantcell.gwtphylo.server.OneKPServiceImpl"/>
-  <servlet path="/svg" class="au.edu.unimelb.plantcell.gwtphylo.server.SVGServlet"/>
   <servlet path="/phyloxml" class="au.edu.unimelb.plantcell.gwtphylo.server.GetPhyloXMLServlet"/>
   
 </module>
