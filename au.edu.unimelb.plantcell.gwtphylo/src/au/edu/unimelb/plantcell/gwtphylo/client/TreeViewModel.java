@@ -19,14 +19,22 @@ import com.google.gwt.user.client.ui.TreeItem;
  */
 public class TreeViewModel implements SelectionHandler<TreeItem> {
 	public enum SupportedFormats { TREE_FORMAT_PHYLOXML };
+	public enum TreeDisplayTypes { TREE_CIRCULAR, TREE_RECTANGULAR };
 	
 	private String               superfamily, category, tree; // or null if not chosen
 	private int                  current_text_size;		      // determines the text size of the taxa labels (in points ie. 1/72 inch)
+	private TreeDisplayTypes     current_display_type;		  // Circular by default
+	private int                  svg_canvas_width;			  // 1000x1000px by default
+	private int                  svg_canvas_height;
+	
 	private static TreeViewModel instance;
 	private final List<TreeViewModelListener> listeners = new ArrayList<TreeViewModelListener>();
 	
 	private TreeViewModel() {
-		current_text_size = 8;
+		current_text_size    = 8;
+		current_display_type = TreeDisplayTypes.TREE_CIRCULAR;
+		svg_canvas_width     = 1000;
+		svg_canvas_height    = 1000;
 	}
 	
 	public List<TreeViewModelListener> getListeners() {
@@ -64,6 +72,33 @@ public class TreeViewModel implements SelectionHandler<TreeItem> {
 		return current_text_size;
 	}
 	
+	/**
+	 * Display the tree as a phylogram or circular phylogram?
+	 */
+	public TreeDisplayTypes getTreeDisplayType() {
+		return current_display_type;
+	}
+	
+	public final boolean isCircularTree() {
+		return (getTreeDisplayType() == TreeDisplayTypes.TREE_CIRCULAR);
+	}
+	
+	public int getCanvasWidth() {
+		return svg_canvas_width;
+	}
+
+	public int getCanvasHeight() {
+		return svg_canvas_height;
+	}
+	
+	/**
+	 * Return the current model as a set of URL params for the GetPhyloXMLServet API
+	 * 
+	 * @param superfamily
+	 * @param category
+	 * @param name
+	 * @return
+	 */
 	private String makeURLEncodedParams(final String superfamily, final String category, final String name) {
 		assert(superfamily != null && category != null && name != null);
 		
@@ -123,8 +158,41 @@ public class TreeViewModel implements SelectionHandler<TreeItem> {
 		fireModelChanged();
 	}
 	
+	public void setDisplayType(String new_display_type) {
+		assert(new_display_type != null);
+		
+		if (new_display_type.toLowerCase().startsWith("circ"))
+			current_display_type = TreeDisplayTypes.TREE_CIRCULAR;
+		else 
+			current_display_type = TreeDisplayTypes.TREE_RECTANGULAR;
+		fireModelChanged();
+	}
+	
+	/**
+	 * TODO HACK FIXME: does not belong here, but dont have a better place for it for now....
+	 * @return
+	 */
 	public static native String getPhyloSVG() /*-{
 		var svgSource = phylocanvas.getSvgSource();
 		return svgSource;
 	}-*/;
+
+	public void setCanvasWidth(int new_value) {
+		if (new_value < 100)
+			new_value = 100;
+		if (new_value > 100000)
+			new_value = 100000;
+		svg_canvas_width = new_value;
+		fireModelChanged();
+	}
+
+	public void setCanvasHeight(int new_value) {
+		if (new_value < 100)
+			new_value = 100;
+		if (new_value > 100000)
+			new_value = 100000;
+		svg_canvas_height = new_value;
+		fireModelChanged();
+	}
+	
 }

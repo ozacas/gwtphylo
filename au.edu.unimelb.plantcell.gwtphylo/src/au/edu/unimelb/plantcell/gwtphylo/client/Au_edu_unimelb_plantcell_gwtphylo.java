@@ -6,6 +6,8 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -13,6 +15,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
 
@@ -71,12 +74,13 @@ public class Au_edu_unimelb_plantcell_gwtphylo implements EntryPoint {
 			
 		});
 		Button      svg_download_button = new Button("Download SVG");
+		svg_download_button.setEnabled(false);
 		svg_download_button.addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
 				if (tree_model.hasCurrentTree()) {
-					
+					// TODO... how to download via the client side data using GWT?
 				}
 			}
 			
@@ -100,10 +104,61 @@ public class Au_edu_unimelb_plantcell_gwtphylo implements EntryPoint {
 			}
 			
 		});
+		final ListBox tree_type = new ListBox(false);
+		tree_type.addItem("Circular Phylogram");
+		tree_type.addItem("Rectangular Phylogram");
+		tree_type.addChangeHandler(new ChangeHandler() {
+
+			@Override
+			public void onChange(ChangeEvent event) {
+				int idx = tree_type.getSelectedIndex();
+				if (idx >= 0) {
+					tree_model.setDisplayType(tree_type.getItemText(idx));
+				}
+			}
+			
+		});
 		
 		controlPanel.add(phyloxml_download_button);
 		controlPanel.add(svg_download_button);
 		controlPanel.add(font_size);
+		controlPanel.add(tree_type);
+		controlPanel.add(new Label("Width"));
+		final NumericTextBox width = new NumericTextBox(tree_model.getCanvasWidth());
+		final NumericTextBox height= new NumericTextBox(tree_model.getCanvasHeight());
+		width.addValueChangeHandler(new ValueChangeHandler<String>() {
+
+			@Override
+			public void onValueChange(ValueChangeEvent<String> event) {
+				try { 
+					Integer new_value = Integer.valueOf(width.getText());
+					tree_model.setCanvasWidth(new_value);
+					// since setCanvasWidth() may reset poor values, we ensure the label always has the (vetoed) value
+					width.setText(String.valueOf(tree_model.getCanvasWidth()));
+				} catch (NumberFormatException nfe) {
+					width.setText("1000");
+				}
+			}
+			
+		});
+		height.addValueChangeHandler(new ValueChangeHandler<String>() {
+
+			@Override
+			public void onValueChange(ValueChangeEvent<String> event) {
+				try { 
+					Integer new_value = Integer.valueOf(height.getText());
+					tree_model.setCanvasHeight(new_value);
+					// since setCanvasHeight() may reset poor values, we ensure the label always has the (vetoed) value
+					height.setText(String.valueOf(tree_model.getCanvasHeight()));
+				} catch (NumberFormatException nfe) {
+					width.setText("1000");
+				}
+			}
+			
+		});
+		controlPanel.add(width);
+		controlPanel.add(new Label("Height"));		
+		controlPanel.add(height);
 		
 		labelPanel.add(current_tree);
 		
