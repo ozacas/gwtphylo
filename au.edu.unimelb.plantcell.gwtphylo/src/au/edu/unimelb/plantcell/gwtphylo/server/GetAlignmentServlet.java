@@ -8,6 +8,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import au.edu.unimelb.plantcell.gwtphylo.shared.ConfigurationConstants;
+
 /**
  * Sends clients a copy of the FASTA file (alignment) of the current tree. 
  * 
@@ -16,18 +18,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class GetAlignmentServlet extends AbstractHttpServlet {
 	/**
-	 * where to read FASTA files from...
-	 */
-	private final static File BASE_DIR = new File("c:/www/1kp-alignments");
-	
-	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -898375516378104977L;
 
 
 	public GetAlignmentServlet() {
-		super(BASE_DIR);
+		super(ConfigurationConstants.ALIGNMENT_ROOT_FOLDER);
 	}
 	
 	
@@ -35,7 +32,7 @@ public class GetAlignmentServlet extends AbstractHttpServlet {
 	protected void initHttpHeaders(final HttpServletResponse resp, final File out) {
 		 resp.setContentType("text/plain");
 		 resp.addHeader("Content-Type", "text/plain");
-		 resp.addHeader("Content-Disposition", "inline; filename=" + out.getName());
+		 resp.addHeader("Content-Disposition", "attachment; filename=" + out.getName());
 	}
 	
 	@Override

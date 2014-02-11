@@ -5,6 +5,7 @@ import java.io.FileFilter;
 import java.util.ArrayList;
 
 import au.edu.unimelb.plantcell.gwtphylo.client.OneKPService;
+import au.edu.unimelb.plantcell.gwtphylo.shared.ConfigurationConstants;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -27,7 +28,7 @@ public class OneKPServiceImpl extends RemoteServiceServlet implements OneKPServi
 	/*
 	 * where phyloxml data is located
 	 */
-	private final File onekp_phyloxml_folder = GetPhyloXMLServlet.BASE_DIR;
+	private final File onekp_phyloxml_folder = ConfigurationConstants.PHYLOXML_ROOT_FOLDER;
 	
 	/* list of gene superfamilies which we present the 1kp data for */
 	public String[] getSuperfamilies() {

@@ -68,7 +68,7 @@ public class Au_edu_unimelb_plantcell_gwtphylo implements EntryPoint {
 			public void onClick(ClickEvent event) {
 				if (tree_model.hasCurrentTree()) {
 					try {
-						Window.open(tree_model.getCurrentTreeURL(TreeViewModel.SupportedFormats.TREE_FORMAT_PHYLOXML), "_blank", "");
+						Window.open(tree_model.getCurrentTreeURL(TreeViewModel.SupportedFormats.TREE_FORMAT_PHYLOXML), "phyloxml", "");
 					} catch (Exception e) {
 						Window.alert(e.getMessage());
 					}
