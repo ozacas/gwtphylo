@@ -16,9 +16,19 @@
   	<servlet-class>au.edu.unimelb.plantcell.gwtphylo.server.GetPhyloXMLServlet</servlet-class>
   </servlet>
  
+  <servlet>
+  	<servlet-name>GetAlignmentServletImpl</servlet-name>
+  	<servlet-class>au.edu.unimelb.plantcell.gwtphylo.server.GetAlignmentServlet</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
   	<servlet-name>GetPhyloXMLServletImpl</servlet-name>
   	<url-pattern>/au_edu_unimelb_plantcell_gwtphylo/phyloxml</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>GetAlignmentServletImpl</servlet-name>
+  	<url-pattern>/au_edu_unimelb_plantcell_gwtphylo/fasta</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>
