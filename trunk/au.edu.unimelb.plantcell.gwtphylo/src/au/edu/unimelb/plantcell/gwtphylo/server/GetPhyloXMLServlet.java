@@ -4,6 +4,8 @@ import java.io.File;
 
 import javax.servlet.http.HttpServletResponse;
 
+import au.edu.unimelb.plantcell.gwtphylo.shared.ConfigurationConstants;
+
 /**
  * Responsible for returning the phyloxml of the chosen tree (see form parameters) to the caller
  * 
@@ -12,23 +14,18 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class GetPhyloXMLServlet extends AbstractHttpServlet {
 	/**
-	 * 
+	 * not used
 	 */
 	private static final long serialVersionUID = -658313887447934760L;
-	/**
-	 * where to read phyloxml files from...
-	 */
-	public final static File BASE_DIR = new File("c:/www/1kp");
-	
-	
+
 	public GetPhyloXMLServlet() {
-		super(BASE_DIR);
+		super(ConfigurationConstants.PHYLOXML_ROOT_FOLDER);
 	}
 	
 	@Override
 	protected void initHttpHeaders(final HttpServletResponse resp, final File out) {
 		 resp.setContentType("application/xml");
 		 resp.addHeader("Content-Type", "application/xml");
-		 resp.addHeader("Content-Disposition", "inline; filename=" + out.getName());
+		 resp.addHeader("Content-Disposition", "attachment; filename=" + out.getName());
 	}
 }
