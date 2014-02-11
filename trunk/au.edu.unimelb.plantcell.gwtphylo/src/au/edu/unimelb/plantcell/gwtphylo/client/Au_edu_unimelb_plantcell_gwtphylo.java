@@ -15,7 +15,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
 
@@ -33,6 +32,7 @@ public class Au_edu_unimelb_plantcell_gwtphylo implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		final Tree t = new Tree();
+		t.setScrollOnSelectEnabled(true);
 		t.addOpenHandler(new OpenTreeItem());
 		t.addSelectionHandler(tree_model);
 		
@@ -51,7 +51,6 @@ public class Au_edu_unimelb_plantcell_gwtphylo implements EntryPoint {
 		
 		// add scrollable canvas to display the SVG rendering to the webpage
 		ScrollPanel sp = new ScrollPanel();
-		sp.setSize("600px", "600px");
 		sp.getElement().setId("scrollableCanvas");
 		RootPanel.get("svgCanvas").add(sp);
 		
@@ -80,7 +79,23 @@ public class Au_edu_unimelb_plantcell_gwtphylo implements EntryPoint {
 			@Override
 			public void onClick(ClickEvent event) {
 				if (tree_model.hasCurrentTree()) {
-					// TODO... how to download via the client side data using GWT?
+					// TODO... how to download via the purely client side using GWT?
+				}
+			}
+			
+		});
+		
+		Button alignment_download_button = new Button("Download alignment");
+		alignment_download_button.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				if (tree_model.hasCurrentTree()) {
+					try {
+						Window.open(tree_model.getCurrentAlignmentURL(), "fasta", "");
+					} catch (Exception e) {
+						Window.alert(e.getMessage());
+					}
 				}
 			}
 			
@@ -121,6 +136,7 @@ public class Au_edu_unimelb_plantcell_gwtphylo implements EntryPoint {
 		
 		controlPanel.add(phyloxml_download_button);
 		controlPanel.add(svg_download_button);
+		controlPanel.add(alignment_download_button);
 		controlPanel.add(font_size);
 		controlPanel.add(tree_type);
 		controlPanel.add(new Label("Width"));

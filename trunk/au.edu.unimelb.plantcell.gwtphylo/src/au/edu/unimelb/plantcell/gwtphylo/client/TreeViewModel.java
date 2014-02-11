@@ -128,6 +128,11 @@ public class TreeViewModel implements SelectionHandler<TreeItem> {
 			throw new Exception("Unsupported format: "+format.toString());
 	}
 
+
+	public String getCurrentAlignmentURL() {
+		return GWT.getModuleBaseURL() + "fasta?"+makeURLEncodedParams(superfamily, category, tree);
+	}
+	
 	@Override
 	public void onSelection(SelectionEvent<TreeItem> event) {
 		TreeItem item = event.getSelectedItem();

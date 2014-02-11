@@ -27,7 +27,7 @@ public class OneKPServiceImpl extends RemoteServiceServlet implements OneKPServi
 	/*
 	 * where phyloxml data is located
 	 */
-	private final File onekp_phyloxml_folder = new File("c:/www/1kp/");
+	private final File onekp_phyloxml_folder = GetPhyloXMLServlet.BASE_DIR;
 	
 	/* list of gene superfamilies which we present the 1kp data for */
 	public String[] getSuperfamilies() {
