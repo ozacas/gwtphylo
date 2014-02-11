@@ -1,15 +1,6 @@
 /** Add css rules here for your application. */
 
 
-/** Example rules used by the template application (remove for your app) */
-h1 {
-  font-size: 2em;
-  font-weight: bold;
-  color: #777777;
-  margin: 40px 0px 70px;
-  text-align: center;
-}
-
 .sendButton {
   display: block;
   font-size: 16pt;
@@ -46,7 +37,19 @@ h1 {
 	text-align: center;
 }
 
+/** size of the tree canvas */
+.scrollableCanvas {
+	width: 60%;
+	height: 60%;
+}
+
 .svgCanvas {
-	width: 600px;
-	height: 600px;
+	width: 60%;
+	height: 60%;
+}
+
+td.heading {
+	font-size: 28pt;
+	font-weight: bold;
+	text-align: left;
 }
