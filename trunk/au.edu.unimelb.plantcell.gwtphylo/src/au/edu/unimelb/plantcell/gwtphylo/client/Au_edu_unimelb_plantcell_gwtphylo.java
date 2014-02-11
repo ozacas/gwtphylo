@@ -53,6 +53,7 @@ public class Au_edu_unimelb_plantcell_gwtphylo implements EntryPoint {
 		
 		// add scrollable canvas to display the SVG rendering to the webpage
 		ScrollPanel sp = new ScrollPanel();
+		sp.setSize("800px", "800px");
 		sp.getElement().setId("scrollableCanvas");
 		RootPanel.get("svgCanvas").add(sp);
 		
@@ -67,7 +68,7 @@ public class Au_edu_unimelb_plantcell_gwtphylo implements EntryPoint {
 			public void onClick(ClickEvent event) {
 				if (tree_model.hasCurrentTree()) {
 					try {
-						Window.open(tree_model.getCurrentTreeURL(TreeViewModel.SupportedFormats.TREE_FORMAT_PHYLOXML), "phyloxml", "");
+						Window.open(tree_model.getCurrentTreeURL(TreeViewModel.SupportedFormats.TREE_FORMAT_PHYLOXML), "_blank", "");
 					} catch (Exception e) {
 						Window.alert(e.getMessage());
 					}
