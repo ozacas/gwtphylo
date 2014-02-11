@@ -6,6 +6,8 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.Window;
@@ -57,7 +59,8 @@ public class Au_edu_unimelb_plantcell_gwtphylo implements EntryPoint {
 		HorizontalPanel    controlPanel = new HorizontalPanel();
 		HorizontalPanel    labelPanel = new HorizontalPanel();
 		
-		Button phyloxml_download_button = new Button("Download PhyloXML");
+		final Button phyloxml_download_button = new Button("Download PhyloXML");
+		phyloxml_download_button.setEnabled(false);
 		phyloxml_download_button.addClickHandler(new ClickHandler() {
 
 			@Override
@@ -72,7 +75,7 @@ public class Au_edu_unimelb_plantcell_gwtphylo implements EntryPoint {
 			}
 			
 		});
-		Button      svg_download_button = new Button("Download SVG");
+		final Button      svg_download_button = new Button("Download SVG");
 		svg_download_button.setEnabled(false);
 		svg_download_button.addClickHandler(new ClickHandler() {
 
@@ -85,7 +88,8 @@ public class Au_edu_unimelb_plantcell_gwtphylo implements EntryPoint {
 			
 		});
 		
-		Button alignment_download_button = new Button("Download alignment");
+		final Button alignment_download_button = new Button("Download alignment");
+		alignment_download_button.setEnabled(false);
 		alignment_download_button.addClickHandler(new ClickHandler() {
 
 			@Override
@@ -183,5 +187,17 @@ public class Au_edu_unimelb_plantcell_gwtphylo implements EntryPoint {
 		
 		// async: will return immediately (callback is responsible for populating the tree)
 		service.getSuperfamilies(sf_cb);
+		
+		t.addSelectionHandler(new SelectionHandler<TreeItem>() {
+
+			@Override
+			public void onSelection(SelectionEvent<TreeItem> event) {
+				boolean has_tree = tree_model.hasCurrentTree();
+				phyloxml_download_button.setEnabled(has_tree);
+				//svg_download_button.setEnabled(has_tree);		// disabled since SVG support doesnt work at the moment
+				alignment_download_button.setEnabled(has_tree);
+			}
+			
+		});
 	}
 }
