@@ -17,9 +17,6 @@ import au.edu.unimelb.plantcell.gwtphylo.shared.ConfigurationConstants;
  *
  */
 public class GetAlignmentServlet extends AbstractHttpServlet {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -898375516378104977L;
 
 

@@ -18,6 +18,7 @@ public class GetPhyloXMLServlet extends AbstractHttpServlet {
 	 */
 	private static final long serialVersionUID = -658313887447934760L;
 
+	
 	public GetPhyloXMLServlet() {
 		super(ConfigurationConstants.PHYLOXML_ROOT_FOLDER);
 	}

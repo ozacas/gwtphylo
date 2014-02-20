@@ -33,6 +33,7 @@ public abstract class AbstractHttpServlet extends HttpServlet {
 	private File base_folder;
 	
 	public AbstractHttpServlet(final File base_folder) {
+		assert(base_folder != null);
 		this.base_folder = base_folder;
 	}
 	
