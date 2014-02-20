@@ -67,7 +67,7 @@ public class TreeView implements TreeViewModelListener {
 	}
 
 	private void setCurrentTreePath(final TreeViewModel mdl) {
-		Element e = DOM.getElementById(Au_edu_unimelb_plantcell_gwtphylo.CURRENT_TREE_LABEL_ID);
+		Element e = DOM.getElementById(GwtPhylo.CURRENT_TREE_LABEL_ID);
 		if (e == null)
 			return;
 	

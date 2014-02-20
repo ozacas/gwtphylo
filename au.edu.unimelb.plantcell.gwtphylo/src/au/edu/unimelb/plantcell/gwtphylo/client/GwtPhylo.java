@@ -23,7 +23,7 @@ import com.google.gwt.user.client.ui.TreeItem;
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class Au_edu_unimelb_plantcell_gwtphylo implements EntryPoint {
+public class GwtPhylo implements EntryPoint {
 	public static final String  CURRENT_TREE_LABEL_ID= "current-tree-label";
 	private static final String CURRENT_FONTSIZE_LIST= "font-size-list";
 	private static final int[]             font_sizes= new int[] { 8, 9, 10, 11, 12, 14, 16, 18, 28 };
