@@ -6,7 +6,7 @@
          xmlns="http://java.sun.com/xml/ns/javaee">
 
   <!-- Servlets -->
-   <servlet>
+  <servlet>
     <servlet-name>OneKPServiceImpl</servlet-name>
     <servlet-class>au.edu.unimelb.plantcell.gwtphylo.server.OneKPServiceImpl</servlet-class>
   </servlet>
@@ -23,22 +23,22 @@
   
   <servlet-mapping>
   	<servlet-name>GetPhyloXMLServletImpl</servlet-name>
-  	<url-pattern>/au_edu_unimelb_plantcell_gwtphylo/phyloxml</url-pattern>
+  	<url-pattern>/gwtphylo/phyloxml</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>
   	<servlet-name>GetAlignmentServletImpl</servlet-name>
-  	<url-pattern>/au_edu_unimelb_plantcell_gwtphylo/fasta</url-pattern>
+  	<url-pattern>/gwtphylo/fasta</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>
   	<servlet-name>OneKPServiceImpl</servlet-name>
-  	<url-pattern>/au_edu_unimelb_plantcell_gwtphylo/OneKPServiceImpl</url-pattern>
+  	<url-pattern>/gwtphylo/gwtphylo</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->
   <welcome-file-list>
-    <welcome-file>Au_edu_unimelb_plantcell_gwtphylo.html</welcome-file>
+    <welcome-file>index.html</welcome-file>
   </welcome-file-list>
 
 </web-app>

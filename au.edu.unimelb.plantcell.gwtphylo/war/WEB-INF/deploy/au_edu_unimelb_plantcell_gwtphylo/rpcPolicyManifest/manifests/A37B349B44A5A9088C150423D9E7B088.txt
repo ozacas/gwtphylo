@@ -1,2 +1,0 @@
-serviceClass: au.edu.unimelb.plantcell.gwtphylo.client.OneKPService
-path: 79EEB713ED87FF1995BDEDF85DE6188E.gwt.rpc
