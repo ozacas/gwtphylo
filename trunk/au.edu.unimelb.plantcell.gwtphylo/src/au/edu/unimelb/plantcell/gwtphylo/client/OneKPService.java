@@ -9,7 +9,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
  * than GWT-RPC can.
  * 
  */
-@RemoteServiceRelativePath("OneKPServiceImpl")
+@RemoteServiceRelativePath("gwtphylo")
 public interface OneKPService extends RemoteService {
 	String[] getSuperfamilies() throws IllegalArgumentException;
 	
