@@ -1,2 +1,0 @@
-serviceClass: au.edu.unimelb.plantcell.gwtphylo.client.GreetingService
-path: 353832ED7ACC425F5EEE980921451AF8.gwt.rpc

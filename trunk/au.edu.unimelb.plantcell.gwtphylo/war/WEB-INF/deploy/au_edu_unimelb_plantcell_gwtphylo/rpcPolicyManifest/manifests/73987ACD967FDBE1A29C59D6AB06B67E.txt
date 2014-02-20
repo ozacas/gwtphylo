@@ -1,2 +1,0 @@
-serviceClass: au.edu.unimelb.plantcell.gwtphylo.client.PhyloXMLService
-path: 073AA5F5744BD20B286A26AAC15A65E2.gwt.rpc
