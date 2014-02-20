@@ -39,8 +39,10 @@ public class OneKPServiceImpl extends RemoteServiceServlet implements OneKPServi
 
 	public String[] asFilenameArray(final File[] col) {
 		ArrayList<String> ret = new ArrayList<String>();
-		for (File f : col) {
-			ret.add(f.getName());
+		if (col != null) {
+			for (File f : col) {
+				ret.add(f.getName());
+			}
 		}
 		return ret.toArray(new String[0]);
 	}
