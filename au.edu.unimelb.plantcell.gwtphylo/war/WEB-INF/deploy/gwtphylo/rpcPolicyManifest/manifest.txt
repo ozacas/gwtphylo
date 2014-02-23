@@ -1,2 +1,3 @@
 # Module gwtphylo
 # RPC service class, partial path of RPC policy file
+au.edu.unimelb.plantcell.gwtphylo.client.OneKPService, 79EEB713ED87FF1995BDEDF85DE6188E.gwt.rpc
