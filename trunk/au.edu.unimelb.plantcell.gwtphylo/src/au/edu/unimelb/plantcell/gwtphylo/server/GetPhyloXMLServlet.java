@@ -4,6 +4,8 @@ import java.io.File;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+
 import au.edu.unimelb.plantcell.gwtphylo.shared.ConfigurationConstants;
 
 /**
@@ -12,6 +14,7 @@ import au.edu.unimelb.plantcell.gwtphylo.shared.ConfigurationConstants;
  * @author http://www.plantcell.unimelb.edu.au/bioinformatics
  * 
  */
+@RemoteServiceRelativePath("phyloxml")
 public class GetPhyloXMLServlet extends AbstractHttpServlet {
 	/**
 	 * not used
