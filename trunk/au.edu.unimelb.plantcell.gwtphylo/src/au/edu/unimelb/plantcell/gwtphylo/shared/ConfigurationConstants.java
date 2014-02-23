@@ -11,6 +11,12 @@ import java.io.File;
  */
 public class ConfigurationConstants {
 	/**
+	 * Testing and production settings, must end in file path separator
+	 */
+	//private final static String DATA_ROOT = "c:/www/";		// for testing only
+	private final static String DATA_ROOT = "/mnt/1kp/";	// REQUIRED for production
+	
+	/**
 	 * Where are the trees on the server? (used by the phyloxml servlet). This folder must have the following structure:
 	 * PHYLOXML_ROOT_FOLDER/
 	 *    - superfamily1
@@ -24,12 +30,12 @@ public class ConfigurationConstants {
 	 *    
 	 *    In other words the website will display (a modified) form of this file structure for the user to select.
 	 */
-	public static final File PHYLOXML_ROOT_FOLDER  = new File("c:/www/1kp-phyloxml");
+	public static final File PHYLOXML_ROOT_FOLDER  = new File(DATA_ROOT + "1kp-phyloxml");
 	
 	/**
 	 * Where are the alignments on the server? (used by the alignment servlet). This root folder must EXACTLY match
 	 * the structure of the folders within {@link PHYLOXML_ROOT_FOLDER} or the alignment servlet wont be able to
 	 * find the alignments which produced the trees. The folder MUST be outside the PHYLOXML_ROOT_FOLDER for correct operations.
 	 */
-	public static final File ALIGNMENT_ROOT_FOLDER = new File("c:/www/1kp-alignments");
+	public static final File ALIGNMENT_ROOT_FOLDER = new File(DATA_ROOT + "1kp-alignments");
 }
