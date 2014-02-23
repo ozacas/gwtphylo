@@ -27,6 +27,7 @@
   <source path='shared' />
 
   <servlet path="/trees"    class="au.edu.unimelb.plantcell.gwtphylo.server.OneKPServiceImpl"/>
+  <!--  since these aren't GWT RPC servlets, they must be prefixed with module rename-to base URL -->
   <servlet path="/phyloxml" class="au.edu.unimelb.plantcell.gwtphylo.server.GetPhyloXMLServlet"/>
   <servlet path="/fasta"    class="au.edu.unimelb.plantcell.gwtphylo.server.GetAlignmentServlet"/>
   
