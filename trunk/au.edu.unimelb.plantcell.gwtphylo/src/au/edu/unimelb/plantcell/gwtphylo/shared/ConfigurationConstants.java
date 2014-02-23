@@ -24,7 +24,7 @@ public class ConfigurationConstants {
 	 *    
 	 *    In other words the website will display (a modified) form of this file structure for the user to select.
 	 */
-	public static final File PHYLOXML_ROOT_FOLDER  = new File("c:/www/1kp");
+	public static final File PHYLOXML_ROOT_FOLDER  = new File("c:/www/1kp-phyloxml");
 	
 	/**
 	 * Where are the alignments on the server? (used by the alignment servlet). This root folder must EXACTLY match

@@ -4,7 +4,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 
 /**
- * The async counterpart of <code>PhyloXMLService</code>.
+ * The async counterpart of <code>OneKpService</code>.
  */
 public interface OneKPServiceAsync {
 	void getSuperfamilies(AsyncCallback<String[]> cb);

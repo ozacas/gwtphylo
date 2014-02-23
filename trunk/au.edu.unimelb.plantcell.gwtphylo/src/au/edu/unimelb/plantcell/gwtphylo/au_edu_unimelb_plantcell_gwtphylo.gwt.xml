@@ -26,7 +26,7 @@
   <source path='client' />
   <source path='shared' />
 
-  <servlet path="/gwtphylo" class="au.edu.unimelb.plantcell.gwtphylo.server.OneKPServiceImpl"/>
+  <servlet path="/trees"    class="au.edu.unimelb.plantcell.gwtphylo.server.OneKPServiceImpl"/>
   <servlet path="/phyloxml" class="au.edu.unimelb.plantcell.gwtphylo.server.GetPhyloXMLServlet"/>
   <servlet path="/fasta"    class="au.edu.unimelb.plantcell.gwtphylo.server.GetAlignmentServlet"/>
   

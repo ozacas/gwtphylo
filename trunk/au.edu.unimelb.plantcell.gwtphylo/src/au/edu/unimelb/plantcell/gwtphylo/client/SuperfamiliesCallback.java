@@ -40,6 +40,7 @@ public class SuperfamiliesCallback implements AsyncCallback<String[]> {
 	@Override
 	public void onSuccess(String[] superfamilies) {
 		for (String superfamily : superfamilies) {
+			System.err.println(superfamily);
 			TreeItem ti = new TreeItem(SafeHtmlUtils.fromString(superfamily));
 			ti.addItem(dummyItem());
 			t.addItem(ti);
