@@ -1,4 +1,4 @@
-/** Add css rules here for your application. */
+/** CSS Rules common to every HTML page this site offers */
 
 
 .sendButton {
@@ -41,6 +41,10 @@
 .scrollableCanvas {
 	width: 60%;
 	height: 60%;
+}
+
+p {
+	width: 70%;
 }
 
 .svgCanvas {
