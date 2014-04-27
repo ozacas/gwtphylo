@@ -76,14 +76,18 @@ public class GwtPhylo implements EntryPoint {
 			}
 			
 		});
-		final Button      svg_download_button = new Button("Download SVG");
-		svg_download_button.setEnabled(false);
-		svg_download_button.addClickHandler(new ClickHandler() {
+		final Button      applet_view_button = new Button("View as applet");
+		applet_view_button.setEnabled(false);
+		applet_view_button.addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
 				if (tree_model.hasCurrentTree()) {
-					// TODO... how to download via the purely client side using GWT?
+					try {
+						Window.open(tree_model.getCurrentAppletURL(), "applet", "");
+					} catch (Exception e) {
+						Window.alert(e.getMessage());
+					}
 				}
 			}
 			
@@ -140,7 +144,7 @@ public class GwtPhylo implements EntryPoint {
 		});
 		
 		controlPanel.add(phyloxml_download_button);
-		controlPanel.add(svg_download_button);
+		controlPanel.add(applet_view_button);
 		controlPanel.add(alignment_download_button);
 		controlPanel.add(font_size);
 		controlPanel.add(tree_type);

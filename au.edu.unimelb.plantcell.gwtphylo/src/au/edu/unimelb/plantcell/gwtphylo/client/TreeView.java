@@ -1,13 +1,12 @@
 package au.edu.unimelb.plantcell.gwtphylo.client;
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.RootPanel;
 
 /**
  * Invoked when a tree item is selected, this listener only responds when a PhyloXML file is chosen for display.
@@ -18,11 +17,11 @@ import com.google.gwt.user.client.ui.RootPanel;
 public class TreeView implements TreeViewModelListener {
 
 	public static void showLoadingBanner(String message){
-		DOM.setInnerHTML(RootPanel.get("loadingMessage").getElement(), message + " &nbsp;<img src=\"images/ajax-loader.gif\" height=15>&nbsp;");
+		// NO-OP for now...
 	}
 
 	public static void hideLoadingBanner(){
-		DOM.setInnerHTML(RootPanel.get("loadingMessage").getElement(), "<br>");
+		// NO-OP
 	}
 		
 	@Override
@@ -83,8 +82,7 @@ public class TreeView implements TreeViewModelListener {
 		Element parent = DOM.getElementById("scrollableCanvas");
 		Element kid;
 		while ((kid = DOM.getFirstChild(parent)) != null) {
-			//System.err.println(kid.getTitle());
-			DOM.removeChild(parent, kid);
+			parent.removeChild(kid);
 		}
 	}
 

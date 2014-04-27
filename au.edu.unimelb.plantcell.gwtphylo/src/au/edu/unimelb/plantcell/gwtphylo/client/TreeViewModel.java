@@ -128,8 +128,25 @@ public class TreeViewModel implements SelectionHandler<TreeItem> {
 			throw new Exception("Unsupported format: "+format.toString());
 	}
 
-
+	/**
+	 * Returns a valid URL for display of the current tree as an Archaeopteryx applet (requires java7 or later to be
+	 * installed into the client's web browser)
+	 * @return null if no current tree is displayed
+	 */
+	public String getCurrentAppletURL() {
+		if (!hasCurrentTree())
+			return null;
+		return GWT.getModuleBaseURL() + "applet?"+makeURLEncodedParams(superfamily, category, tree);
+	}
+	
+	/**
+	 * Returns a URL for download of the current tree's alignment
+	 * @return
+	 */
 	public String getCurrentAlignmentURL() {
+		if (!hasCurrentTree()) 
+			return null;
+		
 		return GWT.getModuleBaseURL() + "fasta?"+makeURLEncodedParams(superfamily, category, tree);
 	}
 	
