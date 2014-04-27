@@ -41,7 +41,7 @@
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
 
-  <!--  until publication of the capstone paper, the site requires basic authentication -->
+  <!--  until publication of the capstone paper, the site requires basic authentication 
   <security-constraint>
 		<web-resource-collection>
 			<web-resource-name>Wildcard means whole app requires authentication</web-resource-name>
@@ -54,13 +54,12 @@
 		</auth-constraint>
 
 		<user-data-constraint>
-			<!-- transport-guarantee can be CONFIDENTIAL, INTEGRAL, or NONE -->
 			<transport-guarantee>NONE</transport-guarantee>
 		</user-data-constraint>
   </security-constraint>
   
   <login-config>
 		<auth-method>BASIC</auth-method>
-  </login-config>
+  </login-config> -->
 
 </web-app>
