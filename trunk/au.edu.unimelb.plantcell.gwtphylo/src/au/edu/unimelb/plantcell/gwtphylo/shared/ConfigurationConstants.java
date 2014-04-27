@@ -13,8 +13,8 @@ public class ConfigurationConstants {
 	/**
 	 * Testing and production settings, must end in file path separator
 	 */
-	//private final static String DATA_ROOT = "c:/www/";		// for testing only
-	private final static String DATA_ROOT = "/mnt/1kp/";	// REQUIRED for production
+	private final static String DATA_ROOT = "c:\\www\\";		// for testing only
+	//private final static String DATA_ROOT = "/mnt/1kp/";	// REQUIRED for production
 	
 	/**
 	 * Where are the trees on the server? (used by the phyloxml servlet). This folder must have the following structure:
@@ -38,4 +38,9 @@ public class ConfigurationConstants {
 	 * find the alignments which produced the trees. The folder MUST be outside the PHYLOXML_ROOT_FOLDER for correct operations.
 	 */
 	public static final File ALIGNMENT_ROOT_FOLDER = new File(DATA_ROOT + "1kp-alignments");
+	
+	/**
+	 * Where are the assembled (possibly partial) coding sequences located? (not currently used, but intended for the future)
+	 */
+	public static final File CDNA_ROOT_FOLDER = new File(DATA_ROOT + "1kp-transcripts");
 }
