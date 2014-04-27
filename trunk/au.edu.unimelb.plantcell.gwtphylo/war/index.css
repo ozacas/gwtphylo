@@ -45,6 +45,7 @@
 
 p {
 	width: 70%;
+	align: center;
 }
 
 .svgCanvas {
@@ -57,4 +58,17 @@ td.heading {
 	font-weight: bold;
 	text-align: left;
 	font-color: #222222;
+}
+
+th {
+	font-size: 11pt;
+	font-weight: bold;
+}
+
+td.small {
+	font-size: 9pt;
+}
+
+td.person {
+	font-weight: italic;
 }
