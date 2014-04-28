@@ -199,7 +199,7 @@ public class GwtPhylo implements EntryPoint {
 			public void onSelection(SelectionEvent<TreeItem> event) {
 				boolean has_tree = tree_model.hasCurrentTree();
 				phyloxml_download_button.setEnabled(has_tree);
-				//svg_download_button.setEnabled(has_tree);		// disabled since SVG support doesnt work at the moment
+				applet_view_button.setEnabled(has_tree);
 				alignment_download_button.setEnabled(has_tree);
 			}
 			

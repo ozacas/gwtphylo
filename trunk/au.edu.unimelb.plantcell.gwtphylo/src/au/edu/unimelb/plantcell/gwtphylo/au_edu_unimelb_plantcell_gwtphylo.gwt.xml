@@ -8,11 +8,13 @@
 <module rename-to="gwtphylo">
   <!-- Inherit the core Web Toolkit stuff.                        -->
   <inherits name='com.google.gwt.user.User'/>
-
+  <inherits name='com.google.gwt.http.HTTP'/>
+  
   <!-- Inherit the default GWT style sheet.  You can change       -->
   <!-- the theme of your GWT application by uncommenting          -->
   <!-- any one of the following lines.                            -->
   <inherits name='com.google.gwt.user.theme.clean.Clean'/>
+  
   <!-- <inherits name='com.google.gwt.user.theme.standard.Standard'/> -->
   <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
   <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
@@ -30,5 +32,6 @@
   <!--  since these aren't GWT RPC servlets, they must be prefixed with module rename-to base URL -->
   <servlet path="/phyloxml" class="au.edu.unimelb.plantcell.gwtphylo.server.GetPhyloXMLServlet"/>
   <servlet path="/fasta"    class="au.edu.unimelb.plantcell.gwtphylo.server.GetAlignmentServlet"/>
+  <servlet path="/applet"   class="au.edu.unimelb.plantcell.gwtphylo.server.AppletServlet"/>
   
 </module>
