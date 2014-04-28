@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,6 +21,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 public abstract class AbstractHttpServlet extends HttpServlet {
+	/*
+	 * Logger shared by all subclasses
+	 */
+	protected final static Logger logger = Logger.getLogger("HttpServlet");
+	
 	/**
 	 * 
 	 */
@@ -48,17 +54,22 @@ public abstract class AbstractHttpServlet extends HttpServlet {
 	
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) {
+		ServletOutputStream stream = null;
+		FileInputStream rdr = null;
 		try {
 			Map<String,String> form_data = new HashMap<String,String>();
 			form_data.put(FIELD_SUPERFAMILY, req.getParameter(FIELD_SUPERFAMILY));
 			form_data.put(FIELD_CATEGORY, req.getParameter(FIELD_CATEGORY));
 			form_data.put(FIELD_TREE, req.getParameter(FIELD_TREE));
 			validateFormData(form_data);
+			logger.info("Got superfamily: "+form_data.get(FIELD_SUPERFAMILY));
+			logger.info("Got category: "+form_data.get(FIELD_CATEGORY));
+			logger.info("Got tree: "+form_data.get(FIELD_TREE));
 			
 			File            out = findFileToSend(form_data);
-			FileInputStream rdr = new FileInputStream(out);
+			rdr = new FileInputStream(out);
 			
-			ServletOutputStream stream = resp.getOutputStream();
+			stream = resp.getOutputStream();
 		    initHttpHeaders(resp, out);
 		    
 		    resp.setContentLength((int) out.length());
@@ -67,12 +78,22 @@ public abstract class AbstractHttpServlet extends HttpServlet {
 		    while ((len = rdr.read(buf, 0, buf.length)) >= 0) {
 			    stream.write(buf, 0, len);
 		    }
-		    stream.close();
 			rdr.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			resp.setStatus(404);
+		} finally {
+			try {
+				if (stream != null) {
+					stream.close();
+				}
+				if (rdr != null) {
+					rdr.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 	}

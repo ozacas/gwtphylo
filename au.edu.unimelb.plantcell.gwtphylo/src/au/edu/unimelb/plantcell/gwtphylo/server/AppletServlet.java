@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import au.edu.unimelb.plantcell.gwtphylo.shared.ConfigurationConstants;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.http.client.URL;
+import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 /**
@@ -40,7 +39,7 @@ public class AppletServlet extends AbstractHttpServlet {
 	@Override
 	protected void initHttpHeaders(HttpServletResponse resp, File file_to_send) {
 		 resp.setContentType("application/html");
-		 resp.addHeader("Content-Type", "application/html");
+		 resp.addHeader("Content-Type", "content-disposition: inline; application/html");
 	}
 
 	@Override
@@ -55,40 +54,63 @@ public class AppletServlet extends AbstractHttpServlet {
 			String params  = makeEncodedURLParams(form_data);
 			initHttpHeaders(resp, null);	// null == inline html not attachment download
 			
-			String url     = GWT.getModuleBaseURL()+"phyloxml?"+params;
-			String config  = GWT.getModuleBaseURL()+"_aptx_configuration_file.txt";
+			String base    = "http://127.0.0.1:8888/";		// MUST end with /
+			String url     = base+"gwtphylo/phyloxml?"+params;
+			String config  = base+"_aptx_configuration_file.txt";
 			PrintWriter pw = new PrintWriter(resp.getOutputStream());
+			pw.println("<!DOCTYPE HTML>");
 			pw.println("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
 			pw.println("<head>");
+			pw.println("	<link type=\"text/css\" rel=\"stylesheet\" href=\"/index.css\">");
+			pw.println("	<title>1kp AGP &amp; GT2 genes</title>");
 			pw.println("</head>");
 			pw.println("<body>");
-			pw.println("<h1>System Requirements</h1>"+
-					"To view this tree in the browser, you must have Java 7 (or later) JRE installed into the browser."
-					);
-			pw.println("<h1> "+form_data.get(FIELD_SUPERFAMILY) + " > "+form_data.get(FIELD_CATEGORY) + " > " +
-								form_data.get("FIELD_TREE") + "</h1>");
-			pw.println("<applet archive=\"archaeopteryx_applets.jar\">");
-				pw.println("code=\"org.forester.archaeopteryx.ArchaeopteryA.class\");");
-				pw.println("name=\"ArchaeopteryxA\");");
+			pw.println("<h1>System Requirements</h1>");
+			pw.println("<p>To view this tree in the browser, you must have Java 7 (or later) JRE installed into the browser."
+					+ "For security reasons, it is very important to keep your Java installation up-to-date. Check your installed programs.</p>"
+			);
+			pw.println("<p>A new window will be created, with Archaeopteryx running it is displaying the tree you have requested."
+					+ " Please wait a few moments as it can take a while to download and start the software.... ");
+			
+			pw.println("<h1> "+form_data.get(FIELD_SUPERFAMILY) + " &gt; "+form_data.get(FIELD_CATEGORY) + " &gt; " +
+								form_data.get(FIELD_TREE) + "</h1>");
+			
+			// the jar file which is served via this tag has been signed by the author, to avoid all the problems
+			// with current java security. We load a configuration file, also part of this GWT module,
+			// which displays all the necessary buttons to enable visualisation of the computed data in the various phyloxml trees
+			
+			pw.println("<object type=\"application/x-java-applet\" height=\"1000\" width=\"1000\" data=\""+base+"archaeopteryx_applets.jar\">");
+			pw.println("	<param name=\"url_of_tree_to_load\" value=\""+url+"\" />");
+			pw.println("	<param name=\"config_file\" value=\""+config+"\" />");
+			pw.println("	<param name=\"code\" value=\"org.forester.archaeopteryx.ArchaeopteryxA.class\" />");
+			pw.println("	<param name=\"archive\" value=\""+base+"archaeopteryx_applets.jar\" />");
+			pw.println("	<param name=\"java_arguments\" value=\"-Xmx512m\" />");
+			pw.println("	ArchaeopteryxA is not working (please check your java configuration!)");
+			pw.println("</object>");
+			
+			/*pw.println("<applet archive=\""+base+"archaeopteryx_applets.jar\">");
+				pw.println("code=\"\"");
+				pw.println("codebase=\""+base+"\"");
+				pw.println("name=\"ArchaeopteryxA\"");
 				pw.println("width=\"1000\"");
 				pw.println("height=\"1000\"");
 				pw.println("alt=\"ArchaeopteryxA is not working (please check your java configuration!)\"");
-				pw.println("<param name=\"url_of_tree_to_load\" value=\""+url+"\"");
-				pw.println("<param name=\"config_file\""+config+"\"");
-				pw.println("<param name=\"java_arguments\" value=\"-Xmx512m\"");
-			pw.println("</applet>");
+				pw.println("<param name=\"url_of_tree_to_load\" value=\""+url+"\" />");
+				pw.println("<param name=\"config_file\" value=\""+config+"\" />");
+				pw.println("<param name=\"java_arguments\" value=\"-Xmx512m\" />");
+			pw.println("</applet>");*/
 			pw.println("</body>");
 			pw.println("</html>");
 			pw.close();
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 	}
 
 	private String makeEncodedURLParams(final Map<String, String> form_data) {
 		StringBuilder sb = new StringBuilder();
 		for ( String k: form_data.keySet() ) {
-	        String vx = URL.encodeQueryString( form_data.get(k));
+	        String vx = SafeHtmlUtils.htmlEscape(form_data.get(k));
 	        if ( sb.length() > 0 ) {
 	            sb.append("&");
 	        }
