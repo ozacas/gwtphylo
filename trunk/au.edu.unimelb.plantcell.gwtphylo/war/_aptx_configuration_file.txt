@@ -199,7 +199,7 @@ write_confidence_values:        display   ?
 write_events:                   display   ?
 color_branches:                 display   no
 width_branches:                 display   no
-show_domain_architectures:      display   no
+show_domain_architectures:      display   yes
 show_binary_characters:         display   no
 show_binary_character_counts:   display   no
 display_internal_data:          display   yes
