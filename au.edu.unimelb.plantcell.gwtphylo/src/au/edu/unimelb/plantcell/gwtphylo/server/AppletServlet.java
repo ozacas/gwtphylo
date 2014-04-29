@@ -93,17 +93,6 @@ public class AppletServlet extends AbstractHttpServlet {
 			pw.println("	ArchaeopteryxA is not working (please check your java configuration!)");
 			pw.println("</object>");
 			
-			/*pw.println("<applet archive=\""+base+"archaeopteryx_applets.jar\">");
-				pw.println("code=\"\"");
-				pw.println("codebase=\""+base+"\"");
-				pw.println("name=\"ArchaeopteryxA\"");
-				pw.println("width=\"1000\"");
-				pw.println("height=\"1000\"");
-				pw.println("alt=\"ArchaeopteryxA is not working (please check your java configuration!)\"");
-				pw.println("<param name=\"url_of_tree_to_load\" value=\""+url+"\" />");
-				pw.println("<param name=\"config_file\" value=\""+config+"\" />");
-				pw.println("<param name=\"java_arguments\" value=\"-Xmx512m\" />");
-			pw.println("</applet>");*/
 			pw.println("</body>");
 			pw.println("</html>");
 			pw.close();
