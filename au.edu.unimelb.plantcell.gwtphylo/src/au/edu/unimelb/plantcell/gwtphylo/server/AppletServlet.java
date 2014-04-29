@@ -2,6 +2,8 @@ package au.edu.unimelb.plantcell.gwtphylo.server;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import au.edu.unimelb.plantcell.gwtphylo.shared.ConfigurationConstants;
 
-import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 /**
@@ -45,6 +46,7 @@ public class AppletServlet extends AbstractHttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) {
 		try {
+			
 			Map<String,String> form_data = new HashMap<String,String>();
 			form_data.put(FIELD_SUPERFAMILY, req.getParameter(FIELD_SUPERFAMILY));
 			form_data.put(FIELD_CATEGORY, req.getParameter(FIELD_CATEGORY));
@@ -107,16 +109,25 @@ public class AppletServlet extends AbstractHttpServlet {
 		}
 	}
 
-	private String makeEncodedURLParams(final Map<String, String> form_data) {
+	/**
+	 * Return the base64 encoded representation of the the tree to display
+	 * @param form_data
+	 * @return
+	 * @throws UnsupportedEncodingException 
+	 */
+	private String makeEncodedURLParams(final Map<String, String> form_data) throws UnsupportedEncodingException {
+		// implementation must match TreeViewModel.makeEncodedURLParams() or the servlet
+		// must support both encodings
 		StringBuilder sb = new StringBuilder();
-		for ( String k: form_data.keySet() ) {
-	        String vx = SafeHtmlUtils.htmlEscape(form_data.get(k));
-	        if ( sb.length() > 0 ) {
-	            sb.append("&");
-	        }
-	        sb.append(k).append("=").append(vx);
-	    }
-
+		for (String k : form_data.keySet()) {
+			String s = URLEncoder.encode(form_data.get(k), "UTF-8");
+			if (sb.length() > 0) {
+				sb.append('&');
+			}
+			sb.append(k);
+			sb.append('=');
+			sb.append(s);
+		}
 		return sb.toString();
 	}
 }
