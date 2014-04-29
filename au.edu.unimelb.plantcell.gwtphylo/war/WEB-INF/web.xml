@@ -21,6 +21,11 @@
   	<servlet-class>au.edu.unimelb.plantcell.gwtphylo.server.GetAlignmentServlet</servlet-class>
   </servlet>
   
+  <servlet>
+      <servlet-name>AppletServletImpl</servlet-name>
+      <servlet-class>au.edu.unimelb.plantcell.gwtphylo.server.AppletServlet</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
   	<servlet-name>GetPhyloXMLServletImpl</servlet-name>
   	<url-pattern>/gwtphylo/phyloxml</url-pattern>
@@ -34,6 +39,11 @@
   <servlet-mapping>
   	<servlet-name>OneKPServiceImpl</servlet-name>
   	<url-pattern>/gwtphylo/trees</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+      <servlet-name>AppletServletImpl</servlet-name>
+      <url-pattern>/gwtphylo/applet</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->
