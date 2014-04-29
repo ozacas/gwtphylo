@@ -67,12 +67,8 @@ public class AppletServlet extends AbstractHttpServlet {
 			pw.println("	<title>1kp AGP &amp; GT2 genes</title>");
 			pw.println("</head>");
 			pw.println("<body>");
-			pw.println("<h1>System Requirements</h1>");
-			pw.println("<p>To view this tree in the browser, you must have Java 7 (or later) JRE installed into the browser."
-					+ "For security reasons, it is very important to keep your Java installation up-to-date. Check your installed programs.</p>"
-			);
-			pw.println("<p>A new window will be created, with Archaeopteryx running it is displaying the tree you have requested."
-					+ " Please wait a few moments as it can take a while to download and start the software.... ");
+			pw.println("<h1>Trouble?</h1>");
+			pw.println("<p>If you are having trouble viewing the tree - please consult the <a href=\"/troubleshooting.html\">troubleshooting page</a>.</p>");
 			
 			pw.println("<h1> "+form_data.get(FIELD_SUPERFAMILY) + " &gt; "+form_data.get(FIELD_CATEGORY) + " &gt; " +
 								form_data.get(FIELD_TREE) + "</h1>");
