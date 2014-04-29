@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import au.edu.unimelb.plantcell.gwtphylo.shared.ConfigurationConstants;
 
+import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 /**
@@ -68,16 +69,22 @@ public class AppletServlet extends AbstractHttpServlet {
 			pw.println("</head>");
 			pw.println("<body>");
 			pw.println("<h1>Trouble?</h1>");
+			
 			pw.println("<p>If you are having trouble viewing the tree - please consult the <a href=\"/troubleshooting.html\">troubleshooting page</a>.</p>");
 			
-			pw.println("<h1> "+form_data.get(FIELD_SUPERFAMILY) + " &gt; "+form_data.get(FIELD_CATEGORY) + " &gt; " +
-								form_data.get(FIELD_TREE) + "</h1>");
+			pw.println("<h1>Running java applet...</h1>");
+			
+			pw.println("<table>");
+			pw.println("<tr><td>Superfamily:</td><td>"+safe(form_data.get(FIELD_SUPERFAMILY))+"</td></tr>");
+			pw.println("<tr><td>Category:</td><td>"+safe(form_data.get(FIELD_CATEGORY))+"</td></tr>");
+			pw.println("<tr><td>Tree:</td><td>"+safe(form_data.get(FIELD_TREE))+"</td></tr>");
+			pw.println("</table>");
 			
 			// the jar file which is served via this tag has been signed by the author, to avoid all the problems
 			// with current java security. We load a configuration file, also part of this GWT module,
 			// which displays all the necessary buttons to enable visualisation of the computed data in the various phyloxml trees
 			
-			pw.println("<object type=\"application/x-java-applet\" height=\"1000\" width=\"1000\" data=\""+base+"archaeopteryx_applets.jar\">");
+			pw.println("<object type=\"application/x-java-applet\" height=\"100\" width=\"200\" data=\""+base+"archaeopteryx_applets.jar\">");
 			pw.println("	<param name=\"url_of_tree_to_load\" value=\""+url+"\" />");
 			pw.println("	<param name=\"config_file\" value=\""+config+"\" />");
 			pw.println("	<param name=\"code\" value=\"org.forester.archaeopteryx.ArchaeopteryxA.class\" />");
@@ -105,6 +112,11 @@ public class AppletServlet extends AbstractHttpServlet {
 		}
 	}
 
+	private String safe(String str) {
+		assert(str != null);
+		return SafeHtmlUtils.htmlEscape(str);
+	}
+	
 	/**
 	 * Return the base64 encoded representation of the the tree to display
 	 * @param form_data
